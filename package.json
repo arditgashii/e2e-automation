@@ -4,14 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "cypress run",
-    "test:critical": "cypress run --spec 'cypress/integration/aboutUs.spec.js'",
-    "test:general": "cypress run --spec 'cypress/integration/homePage.spec.js,cypress/integration/services.spec.js,cypress/integration/adminPage.spec.js,cypress/integration/registration.spec.js'"
+    "test:ui": "npx cypress open",
+    "test:critical": "cypress run --spec 'cypress/integration/critical/**/*.spec.js'",
+    "test:run": "npx cypress run"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@faker-js/faker": "^8.4.1",
     "cypress": "^13.8.1"
   }
 }
