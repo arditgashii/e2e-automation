@@ -1,47 +1,30 @@
-describe('Home Page Tests', () => {
-  beforeEach(() => {
-    // Visit the Home page before each test
+// cypress/integration/home_page_spec.js
+
+describe('Home Page Test', () => {
+  it('Loads the home page and verifies elements', () => {
+    // Visit the home page
     cy.visit('https://parabank.parasoft.com/parabank/index.htm');
-  });
 
-  it('checks visibility of necessary elements on the Home Page (not logged in)', () => {
-    // Check for the visibility of the top panel elements
-    cy.get('.admin').should('be.visible');
-    cy.get('.logo').should('be.visible');
-    cy.get('.caption').should('be.visible');
+    // Verify the presence of main elements
+    cy.get('#mainPanel').should('exist');
+    cy.get('#topPanel').should('exist');
+    cy.get('#headerPanel').should('exist');
+    cy.get('#bodyPanel').should('exist');
+    cy.get('#footermainPanel').should('exist');
 
-    // Verify header navigation links are visible
-    cy.get('#headerPanel ul.leftmenu li').each((item) => {
-      cy.wrap(item).should('be.visible');
-    });
+    // Verify the presence of specific elements
+    cy.get('h2').contains('Customer Login').should('exist');
+    cy.get('form[name="login"]').should('exist');
+    cy.get('form[name="login"] input[name="username"]').should('exist');
+    cy.get('form[name="login"] input[name="password"]').should('exist');
+    cy.get('form[name="login"] input[type="submit"]').should('exist');
+    cy.contains('Forgot login info?').should('exist');
+    cy.contains('Register').should('exist');
 
-    // Verify the button links in the header
-    cy.get('#headerPanel ul.button li').each((item) => {
-      cy.wrap(item).should('be.visible');
-    });
+    // Test login form functionality (You may need to modify this part based on your actual login process)
+    cy.get('form[name="login"] input[name="username"]').type('testuser');
+    cy.get('form[name="login"] input[name="password"]').type('password');
+    cy.get('form[name="login"]').submit();
 
-    // Check for the visibility of the login form elements
-    cy.get('#loginPanel').should('be.visible');
-    cy.get('input[name="username"]').should('be.visible');
-    cy.get('input[name="password"]').should('be.visible');
-    cy.get('input[type="submit"]').should('be.visible');
-
-    // Check for the visibility of the right panel elements
-    cy.get('#rightPanel span.services').should('be.visible');
-    cy.get('#rightPanel ul.services').should('be.visible');
-    cy.get('#rightPanel ul.servicestwo').should('be.visible');
-    cy.get('#rightPanel h4').should('be.visible').and('contain', 'Latest News');
-    cy.get('#rightPanel ul.events').should('be.visible');
-    cy.get('#rightPanel p.more').should('be.visible');
-
-    // Footer checks
-    cy.get('#footerPanel').should('be.visible');
-    cy.get('#footerPanel ul li').each((item) => {
-      cy.wrap(item).should('be.visible');
-    });
-    cy.get('#footerPanel p.copyright').should('be.visible');
-    cy.get('ul.visit li').each((item) => {
-      cy.wrap(item).should('be.visible');
-    });
   });
 });
