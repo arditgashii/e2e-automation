@@ -1,5 +1,5 @@
 import { faker } from '@faker-js/faker';
-import registrationPage from '../pom/registerPom.cy';
+import registrationPage from '../../pom/registerPom.cy';
 
 describe('User Registration and Login Test', () => {
     // Declaring variables to store generated username and password

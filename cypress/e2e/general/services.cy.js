@@ -1,4 +1,4 @@
-import ServicesPage from '../pom/servicesPom.cy';
+import ServicesPage from '../../pom/servicesPom.cy';
 
 describe('Testing Services page', () => {
     it('Get the number of table rows', () => {
