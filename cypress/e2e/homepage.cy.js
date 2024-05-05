@@ -1,15 +1,10 @@
-describe('About Us Page Tests', () => {
+describe('Home Page Tests', () => {
   beforeEach(() => {
-    cy.visit('https://parabank.parasoft.com/parabank/about.htm');
+    // Visit the Home page before each test
+    cy.visit('https://parabank.parasoft.com/parabank/index.htm');
   });
 
-
-  it('checks visibility of all necessary elements on the About Us page', () => {
-    // Confirm the page is loaded
-    cy.url().should('eq', 'https://parabank.parasoft.com/parabank/about.htm');
-
-    cy.get('body').should('be.visible');
-    cy.contains('ParaSoft Demo Website').should('be.visible');
+  it('checks visibility of necessary elements on the Home Page (not logged in)', () => {
     // Check for the visibility of the top panel elements
     cy.get('.admin').should('be.visible');
     cy.get('.logo').should('be.visible');
@@ -25,15 +20,19 @@ describe('About Us Page Tests', () => {
       cy.wrap(item).should('be.visible');
     });
 
-    // Check for the visibility of the main content elements
-    cy.get('h1.title').should('be.visible').and('contain', 'ParaSoft Demo Website');
-    cy.get('#rightPanel p').should('be.visible');
-
-    // Check for the login form visibility
+    // Check for the visibility of the login form elements
     cy.get('#loginPanel').should('be.visible');
     cy.get('input[name="username"]').should('be.visible');
     cy.get('input[name="password"]').should('be.visible');
     cy.get('input[type="submit"]').should('be.visible');
+
+    // Check for the visibility of the right panel elements
+    cy.get('#rightPanel span.services').should('be.visible');
+    cy.get('#rightPanel ul.services').should('be.visible');
+    cy.get('#rightPanel ul.servicestwo').should('be.visible');
+    cy.get('#rightPanel h4').should('be.visible').and('contain', 'Latest News');
+    cy.get('#rightPanel ul.events').should('be.visible');
+    cy.get('#rightPanel p.more').should('be.visible');
 
     // Footer checks
     cy.get('#footerPanel').should('be.visible');
